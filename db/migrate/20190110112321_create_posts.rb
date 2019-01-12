@@ -4,6 +4,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_foreign_key :user_id, :users
+    add_foreign_key :user_id, :users, :name => user_id
   end
 end
