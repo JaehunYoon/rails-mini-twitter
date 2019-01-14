@@ -10,15 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_10_005408) do
+ActiveRecord::Schema.define(version: 2019_01_14_062631) do
 
-  create_table "users", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "content", limit: 800
+    t.string "image", limit: 255
+    t.integer "reply_to"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "users", id: false, force: :cascade do |t|
     t.string "user_id", limit: 20, null: false
     t.string "password", limit: 45, null: false
     t.string "username", limit: 45, null: false
     t.string "profile_image", limit: 255
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
 end
